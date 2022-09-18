@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>Test Page</title>
+  <meta charset="UTF-8">
+  <title>トップページ</title>
 </head>
 <body>
-トップ画面<br>
-
+<p>これはトップページです。</p>
 <p th:text="|ようこそ ${email} さん。|"></p>
-token <p th:text="${token}"></p>
-header <p th:text="${header}"></p></body>
+<ul>
+  <li><a href="/admin">管理者ページ</a></li>
+  <li><a href="/logout">ログアウト</a></li>
+</ul>
+</body>
 </html>

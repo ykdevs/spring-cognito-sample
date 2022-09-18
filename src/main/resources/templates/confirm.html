@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>認証コード</title>
+  <script src="/js/aws-cognito-sdk.min.js"></script>
+  <script src="/js/amazon-cognito-identity.min.js"></script>
+  <script th:inline="javascript">
+    function OnCognitoConfirmRegistration() {
+
+      var poolData = {
+        UserPoolId: [[${userPoolId}]],
+        ClientId: [[${clientId}]],
+      };
+      var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+
+      var username = document.getElementById("email").value;
+      var code = document.getElementById("ConfirmCode").value;
+
+      var userData = {
+        Username: username,
+        Pool: userPool,
+      };
+
+      var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+      cognitoUser.confirmRegistration(code, true, function(err, result) {
+        if (err) {
+          alert(err.message || JSON.stringify(err));
+          return;
+        }
+        console.log('call result: ' + result);
+        location.href = '/login';
+      });
+    }
+  </script>
+</head>
+<body>
+<h1>認証コード入力</h1>
+<span style="display: inline-block; width: 150px;">Email</span>
+<input type="text" id="email" placeholder="Email Address">
+<br/>
+<span style="display: inline-block; width: 150px;">ConfirmCode</span>
+<input type="text" id="ConfirmCode" placeholder="Confirm Code">
+<br/><br/>
+<input type="button" value="送信" onclick="OnCognitoConfirmRegistration();">
+</body>
+</html>

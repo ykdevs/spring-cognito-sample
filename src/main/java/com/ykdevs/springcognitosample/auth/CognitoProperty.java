@@ -1,4 +1,4 @@
-package com.ykdevs.springcognitosample.controller;
+package com.ykdevs.springcognitosample.auth;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -55,4 +55,3 @@ public class CognitoProperty {
         private String id;
     }
 }
-

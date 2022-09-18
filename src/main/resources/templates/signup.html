@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ユーザー登録</title>
+  <script src="/js/aws-cognito-sdk.min.js"></script>
+  <script src="/js/amazon-cognito-identity.min.js"></script>
+  <script th:inline="javascript">
+    function OnCognitoSignUp() {
+
+      var poolData = {
+        UserPoolId: [[${userPoolId}]],
+        ClientId: [[${clientId}]],
+      };
+      var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+
+      var username = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+
+      userPool.signUp(username, password, null, null, function(
+          err,
+          result
+      ) {
+        if (err) {
+          alert(err.message || JSON.stringify(err));
+          return;
+        }
+        var cognitoUser = result.user;
+        console.log('user name is ' + cognitoUser.getUsername());
+        location.href = '/confirm';
+      });
+    }
+  </script>
+</head>
+<body>
+<h1>ユーザー登録</h1>
+<span style="display: inline-block; width: 150px;">Email</span>
+<input type="text" id="email" placeholder="Email Address">
+<br/>
+<span style="display: inline-block; width: 150px;">Password</span>
+<input type="password" id="password" placeholder="Password">
+<br/><br/>
+<input type="button" value="登録" onclick="OnCognitoSignUp();">
+<p></p>
+<div><a href="/login">ログイン</a></div>
+</body>
+</html>

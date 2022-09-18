@@ -1,4 +1,4 @@
-package com.ykdevs.springcognitosample.controller;
+package com.ykdevs.springcognitosample.auth;
 
 import com.auth0.jwk.Jwk;
 import com.auth0.jwk.UrlJwkProvider;
@@ -9,11 +9,12 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import java.net.URL;
 import java.security.PublicKey;
 import java.security.interfaces.RSAPublicKey;
+import java.util.Arrays;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class DemoJwtVerifier {
+public class SampleJwtVerifier {
 
     @Getter
     private String email;
@@ -33,6 +34,10 @@ public class DemoJwtVerifier {
             verifier.verify(idToken);
 
             email = decodedJWT.getClaim("email").asString();
+            if (email==null) {
+                Arrays.stream(decodedJWT.getClaim("identities").asArray(AzureIdentity.class)).findFirst()
+                        .ifPresent(x -> {email = x.getUserId();});
+            }
             role = decodedJWT.getClaim("custom:role").asString();
 
         } catch (Exception exception) {
