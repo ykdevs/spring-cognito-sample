@@ -24,6 +24,10 @@ SpringBootのCognito認証認可サンプルプログラム
 
 ## 実行
 
+local環境での実行
+
 ```shell
-./gradlew bootRun
+SPRING_PROFILES_ACTIVE=local ./gradlew bootRun
 ```
+
+[http://localhost:8080/](http://localhost:8080/)

@@ -3,7 +3,7 @@ aws:
     userPool:
       id: ""
       clientId: ""
-      tokenUri: https://${MYDOMAIN:""}.auth.${AWS_DEFAULT_REGION:ap-northeast-1}.amazoncognito.com/oauth2/token
-      authorizationUri: https://${MYDOMAIN:""}.auth.${AWS_DEFAULT_REGION:ap-northeast-1}.amazoncognito.com/oauth2/authorize
+      tokenUri: https://${MYDOMAIN}.auth.${AWS_DEFAULT_REGION:ap-northeast-1}.amazoncognito.com/oauth2/token
+      authorizationUri: https://${MYDOMAIN}.auth.${AWS_DEFAULT_REGION:ap-northeast-1}.amazoncognito.com/oauth2/authorize
     idPool:
       id: ""
