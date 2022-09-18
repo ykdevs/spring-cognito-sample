@@ -1,0 +1,11 @@
+aws:
+  cognito:
+    region: ${AWS_DEFAULT_REGION:ap-northeast-1}
+    userPool:
+      id: ${USER_POOL_ID}
+      clientId: ${APP_CLIENT_ID}
+      tokenUri: https://${MYDOMAIN}.auth.${AWS_DEFAULT_REGION:ap-northeast-1}.amazoncognito.com/oauth2/token
+      authorizationUri: https://${MYDOMAIN}.auth.${AWS_DEFAULT_REGION:ap-northeast-1}.amazoncognito.com/oauth2/authorize
+      redirectUri: http://localhost:8080/callback
+    idPool:
+      id: ${ID_POOL_ID}

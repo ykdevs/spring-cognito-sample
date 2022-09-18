@@ -1,0 +1,9 @@
+version: '3'
+services:
+
+  web:
+    build: .
+    platform: linux/x86_64
+    container_name: spring-cognito-sample
+    ports:
+      - 8080:8080
