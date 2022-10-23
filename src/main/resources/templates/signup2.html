@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ユーザー登録(Java)</title>
+</head>
+<body>
+<h1>ユーザー登録</h1>
+<form th:action="@{/signup2/create}" th:object="${userRequest}" method="post">
+<span style="display: inline-block; width: 150px;">Email</span>
+<input type="text" id="email" name="email" placeholder="Email Address">
+<br/>
+<span style="display: inline-block; width: 150px;">Password</span>
+<input type="password" id="password" name="password" placeholder="Password">
+<br/><br/>
+<input type="submit" value="登録">
+</form>
+<p></p>
+<div><a href="/login">ログイン</a></div>
+</body>
+</html>
